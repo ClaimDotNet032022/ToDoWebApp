@@ -30,7 +30,7 @@ namespace ToDoWebApp032022.Pages.Lists
                 return NotFound();
             }
 
-            var todolist =  await _context.ToDoLists.FirstOrDefaultAsync(m => m.Id == id);
+            var todolist =  _context.ToDoLists.FirstOrDefault(m => m.Id == id);
             if (todolist == null)
             {
                 return NotFound();
@@ -48,7 +48,8 @@ namespace ToDoWebApp032022.Pages.Lists
                 return Page();
             }
 
-            _context.Attach(ToDoList).State = EntityState.Modified;
+            //_context.Attach(ToDoList).State = EntityState.Modified;
+            _context.ToDoLists.Update(ToDoList);
 
             try
             {
