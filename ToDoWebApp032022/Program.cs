@@ -10,6 +10,10 @@ builder.Services.AddDbContext<ToDoDbContext>(optionsBuilder => optionsBuilder.Us
 
 var app = builder.Build();
 
+// Avoid DateTime errors with npgsql without having to set a Kind
+// on every single DateTime we use.
+AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
